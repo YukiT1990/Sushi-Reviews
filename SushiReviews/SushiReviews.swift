@@ -43,10 +43,6 @@ func sushiReviews() {
     func findSmallestTravelTime(startRestaurant: Restaurant) {
         let q = Queue<Restaurant>()
         q.enqueue(item: startRestaurant)
-        var restaurantsToVisitDict: [Int: Bool] = [:]
-        for i in indexesOfM {
-            restaurantsToVisitDict[i] = false
-        }
         
         while !q.isEmpty() {
             
@@ -61,15 +57,13 @@ func sushiReviews() {
             if travelTime > smallestTravelTime {
                 break
             }
-            if indexesOfM.contains(number) {
-                restaurantsToVisitDict[number] = true
-                if containsAll(array: indexesOfM, set: traveledRestaurants) {
-                    if travelTime < smallestTravelTime {
-                        smallestTravelTime = travelTime
-                    }
-                    break
+            if containsAll(array: indexesOfM, set: traveledRestaurants) {
+                if travelTime < smallestTravelTime {
+                    smallestTravelTime = travelTime
                 }
+                break
             }
+
             for i in 0..<adjacentRestaurants.count {
                 let adjacentRestaurantNumber = adjacentRestaurants[i]
                 if adjacentRestaurantNumber == previousReataurant && adjacentRestaurants.count > 1 {
