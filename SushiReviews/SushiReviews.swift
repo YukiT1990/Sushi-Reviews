@@ -64,8 +64,6 @@ func sushiReviews() {
             if indexesOfM.contains(number) {
                 restaurantsToVisitDict[number] = true
                 if containsAll(array: indexesOfM, set: traveledRestaurants) {
-                    print("travelTime \(travelTime)")
-                    print(traveledRestaurants)
                     if travelTime < smallestTravelTime {
                         smallestTravelTime = travelTime
                     }
@@ -82,10 +80,8 @@ func sushiReviews() {
         }
     }
     for restaurant in indexesOfM {
-        print("start \(restaurant)")
         let emptySet: Set<Int> = []
         findSmallestTravelTime(startRestaurant: Restaurant(number: restaurant, adjacent: paths[restaurant], previousRestaurant: -1, traveledRestaurants: emptySet, travelTime: 0))
     }
-    print("output")
     print(smallestTravelTime)
 }
